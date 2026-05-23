@@ -1,0 +1,40 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #f8f7f3;
+  --ink: #1f2937;
+}
+
+body {
+  min-height: 100vh;
+  color: var(--ink);
+  background: var(--background);
+  background-image:
+    radial-gradient(circle at 20% 0%, #d9f4eb 0, transparent 35%),
+    radial-gradient(circle at 80% 10%, #fef3c7 0, transparent 30%);
+  font-family: var(--font-geist-sans), "Segoe UI", sans-serif;
+}
+
+input,
+select,
+textarea,
+button {
+  font: inherit;
+}
+
+@keyframes rekapin-value-fade {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.rekapin-value-fade {
+  animation: rekapin-value-fade 180ms ease-out;
+}
