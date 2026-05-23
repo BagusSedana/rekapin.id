@@ -23,6 +23,7 @@ const midtransSnapScript =
   process.env.MIDTRANS_IS_PRODUCTION === "true"
     ? "https://app.midtrans.com/snap/snap.js"
     : "https://app.sandbox.midtrans.com/snap/snap.js";
+const midtransClientKey = process.env.NEXT_PUBLIC_MIDTRANS_CLIENT_KEY ?? "";
 
 export default function RootLayout({
   children,
@@ -35,12 +36,14 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         {children}
-        <Script
-          id="midtrans-snap"
-          src={midtransSnapScript}
-          data-client-key={process.env.NEXT_PUBLIC_MIDTRANS_CLIENT_KEY ?? ""}
-          strategy="afterInteractive"
-        />
+        {midtransClientKey ? (
+          <Script
+            id="midtrans-snap"
+            src={midtransSnapScript}
+            data-client-key={midtransClientKey}
+            strategy="afterInteractive"
+          />
+        ) : null}
       </body>
     </html>
   );

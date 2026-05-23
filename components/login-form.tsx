@@ -14,7 +14,8 @@ export function LoginForm({ initialError = null }: LoginFormProps) {
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const formData = new FormData(event.currentTarget);
+    const form = event.currentTarget;
+    const formData = new FormData(form);
     const email = String(formData.get("email") ?? "").trim();
 
     startTransition(async () => {
@@ -38,7 +39,7 @@ export function LoginForm({ initialError = null }: LoginFormProps) {
 
         setIsSuccess(true);
         setFeedback("Cek email kamu! Kami kirim link untuk masuk.");
-        event.currentTarget.reset();
+        form.reset();
       } catch (error) {
         console.error("Login error:", error);
         setFeedback("Terjadi kendala saat mengirim link masuk. Coba lagi sebentar.");
